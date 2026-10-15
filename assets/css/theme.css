@@ -23,7 +23,7 @@
 .btn-primary:is(:hover, :focus-visible) { background-color: #17603B; border-color: #17603B; }
 :focus-visible { outline: 2px solid #1F7A4C; outline-offset: 3px; }
 
-#back-to-top-btn { color: #1F7A4C; border-color: #1F7A4C; }
+#back-to-top-btn { background-color: transparent; color: #1F7A4C; border-color: #1F7A4C; }
 #back-to-top-btn:hover, #back-to-top-btn:focus { background-color: #1F7A4C; color: #fff; }
 
 /* project cards: sage / apricot / heather / mist, hues spread around the wheel at equal lightness
