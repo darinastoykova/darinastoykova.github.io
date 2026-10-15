@@ -1,0 +1,91 @@
+/* =====================================================
+   Darry. colour refresh (prototype)
+   Load AFTER style.css and shape.css. Only colours change.
+   Palette: forest green primary, sage support,
+   warm apricot complement, warm paper neutrals.
+   ===================================================== */
+:root {
+  --white: hsla(0, 0%, 100%, 1);
+  --cultured: #F6F4EE;               /* hero background: warm paper   */
+  --snow: #EEF5F0;                   /* contact card: sage tint       */
+  --manatee: #8A968F;                /* placeholders                  */
+  --black-coral: #4E5D55;            /* body text: green-grey         */
+  --cadet-blue-crayola_a20: hsla(146, 22%, 60%, 0.22);
+  --cinnamon-satin: #1F7A4C;         /* primary: forest green         */
+  --raisin-black: #14211A;           /* mobile nav, dark surfaces     */
+  --raisin-black_a6: hsla(148, 24%, 10%, 0.06);
+  --gunmetal: #23332B;
+  --charcoal: #1B2B23;               /* headings                      */
+  --shadow-1: 0 0 20px hsla(148, 24%, 10%, 0.05);
+  --shadow-2: 0 4px 28px hsla(148, 24%, 10%, 0.07);
+}
+::selection { background: #CFE4D6; color: #1B2B23; }
+.btn-primary:is(:hover, :focus-visible) { background-color: #17603B; border-color: #17603B; }
+:focus-visible { outline: 2px solid #1F7A4C; outline-offset: 3px; }
+
+#back-to-top-btn { color: #1F7A4C; border-color: #1F7A4C; }
+#back-to-top-btn:hover, #back-to-top-btn:focus { background-color: #1F7A4C; color: #fff; }
+
+/* project cards: sage / apricot / heather / mist, hues spread around the wheel at equal lightness
+   (replace the inline styles in index.html with these values) */
+.project-card-1 { background-color: #F6F4EE !important; }
+.project-card-1 .card-tag, .project-card-1 .btn-text { color: #87684F !important; }
+.project-card-2 { background-color: #EEF5F0 !important; }   /* sage tint */
+.project-card-2 .card-tag, .project-card-2 .btn-text { color: #1F7A4C !important; }   /* forest green */
+.project-card-4 { background-color: #EDF2F3 !important; }
+.project-card-4 .card-tag, .project-card-4 .btn-text { color: #2F5D6C !important; }
+.project-card-3 { background-color: #F3F0F7 !important; }
+.project-card-3 .card-tag, .project-card-3 .btn-text { color: #61497A !important; }
+
+/* floating confetti, remapped from shape.css */
+.shape-container--1 .random-shape:after { color: #E8E1CC; }
+.shape-container--2 .random-shape:after { color: #1F7A4C; }
+.shape-container--3 .random-shape:after { color: #A9CDB5; }
+.shape-container--4 .random-shape:after { color: #A9CDB5; }
+.shape-container--5 .random-shape:after { color: #1F7A4C; }
+.shape-container--6 .random-shape:after { color: #E2BC55; }
+.shape-container--7 .random-shape:after { color: #E2BC55; }
+.shape-container--8 .random-shape:after { color: #E2BC55; }
+.shape-container--9 .random-shape:after { color: #A9CDB5; }
+.shape-container--10 .random-shape:after { color: #E9A178; }
+.shape-container--11 .random-shape:after { color: #E9A178; }
+.shape-container--12 .random-shape:after { color: #1F7A4C; }
+.shape-container--13 .random-shape:after { color: #A9CDB5; }
+.shape-container--14 .random-shape:after { color: #1F7A4C; }
+.shape-container--15 .random-shape:after { color: #1F7A4C; }
+.shape-container--16 .random-shape:after { color: #1F7A4C; }
+.shape-container--17 .random-shape:after { color: #E8E1CC; }
+.shape-container--18 .random-shape:after { color: #A9CDB5; }
+.shape-container--19 .random-shape:after { color: #E8E1CC; }
+.shape-container--20 .random-shape:after { color: #E8E1CC; }
+.shape-container--21 .random-shape:after { color: #E8E1CC; }
+.shape-container--22 .random-shape:after { color: #1F7A4C; }
+.shape-container--23 .random-shape:after { color: #E9A178; }
+.shape-container--24 .random-shape:after { color: #E9A178; }
+.shape-container--25 .random-shape:after { color: #E9A178; }
+.shape-container--26 .random-shape:after { color: #E2BC55; }
+.shape-container--27 .random-shape:after { color: #1F7A4C; }
+.shape-container--28 .random-shape:after { color: #E8E1CC; }
+.shape-container--29 .random-shape:after { color: #E2BC55; }
+.shape-container--30 .random-shape:after { color: #1F7A4C; }
+.shape-container--31 .random-shape:after { color: #E2BC55; }
+.shape-container--32 .random-shape:after { color: #E8E1CC; }
+.shape-container--33 .random-shape:after { color: #E9A178; }
+.shape-container--34 .random-shape:after { color: #A9CDB5; }
+.shape-container--35 .random-shape:after { color: #E8E1CC; }
+.shape-container--36 .random-shape:after { color: #A9CDB5; }
+.shape-container--37 .random-shape:after { color: #A9CDB5; }
+.shape-container--38 .random-shape:after { color: #E9A178; }
+.shape-container--39 .random-shape:after { color: #E9A178; }
+.shape-container--40 .random-shape:after { color: #E8E1CC; }
+.shape-container--41 .random-shape:after { color: #1F7A4C; }
+.shape-container--42 .random-shape:after { color: #E2BC55; }
+.shape-container--43 .random-shape:after { color: #E2BC55; }
+.shape-container--44 .random-shape:after { color: #A9CDB5; }
+.shape-container--45 .random-shape:after { color: #E9A178; }
+.shape-container--46 .random-shape:after { color: #1F7A4C; }
+.shape-container--47 .random-shape:after { color: #E8E1CC; }
+.shape-container--48 .random-shape:after { color: #1F7A4C; }
+.shape-container--49 .random-shape:after { color: #A9CDB5; }
+.shape-container--50 .random-shape:after { color: #E9A178; }
+.project-card { box-shadow: 0 6px 24px -6px hsla(148, 24%, 10%, 0.10), 0 2px 6px hsla(148, 24%, 10%, 0.04) !important; }
