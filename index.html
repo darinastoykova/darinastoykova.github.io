@@ -1,623 +1,181 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- 
-    - primary meta tags
-  -->
-  <title>Darina Stoykova</title>
-  <meta name="title" content="Darina Stoykova - Portfolio Website">
-  <meta name="description" content="Welcome to Darina's personal portfolio website :)">
-
-  <!-- 
-    - favicon
-  -->
-  <link rel="shortcut icon" href="./favicon.svg" type="image/svg+xml"> 
-
-  <!-- 
-    - google font link
-  -->
+  <title>Under construction | Darina Stoykova, UI/UX Designer</title>
+  <meta name="description" content="The portfolio of Darina Stoykova, UI/UX designer, is being rebuilt. Please check back soon or get in touch.">
+  <meta name="theme-color" content="#EEF5F0">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* Palette taken from illustration.svg. Contrast ratios (WCAG 2.0 AA needs 4.5:1 text, 3:1 UI):
+       green  #1F7A4C on sage #EEF5F0  4.8:1   | white on green  5.3:1
+       ink    #1B2B23 on sage          13:1    | slate #4E5D55 on sage  6.1:1
+       hover  #17603B on white         7.3:1 */
+    :root {
+      --sage: #EEF5F0;
+      --white: #FFFFFF;
+      --green: #1F7A4C;
+      --green-deep: #17603B;
+      --peach: #F6D9C4;
+      --ink: #1B2B23;
+      --slate: #4E5D55;
+      --line: #DCE5DF;
+      --ff: "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { font-size: 62.5%; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: var(--ff);
+      font-size: 1.8rem;
+      line-height: 1.6;
+      color: var(--slate);
+      background:
+        radial-gradient(60rem 40rem at 90% 10%, var(--peach) 0%, transparent 70%),
+        var(--sage);
+    }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    .skip {
+      position: absolute; left: 1.6rem; top: -6rem;
+      background: var(--ink); color: var(--white);
+      padding: 1.2rem 2rem; border-radius: 999px; font-weight: 700; text-decoration: none;
+      z-index: 10;
+    }
+    .skip:focus { top: 1.6rem; }
+    a:focus-visible, button:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 999px; }
 
-  <!-- 
-    - custom css link
-  -->
-  <link rel="stylesheet" href="./assets/css/style.css">
-  <link rel="stylesheet" href="./assets/css/shape.css">
-  <link rel="stylesheet" href="./assets/css/theme.css">
-  
+    header, main, footer { width: min(120rem, 100% - 4rem); margin-inline: auto; }
+    header { padding-block: 3.2rem 0; }
+    .brand { font-size: 2.4rem; font-weight: 800; color: var(--ink); text-decoration: none; letter-spacing: -.02em; }
+    .brand span { color: var(--green); }
 
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 4rem;
+      align-items: center;
+      padding-block: 4rem 6rem;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 1rem;
+      padding: .8rem 1.8rem;
+      background: var(--white);
+      border: 2px solid var(--green);
+      border-radius: 999px;
+      color: var(--green-deep);
+      font-size: 1.4rem; font-weight: 800;
+      letter-spacing: .12em; text-transform: uppercase;
+    }
+    .badge i { width: 1rem; height: 1rem; border-radius: 50%; background: var(--green); }
+    h1 {
+      margin: 2.4rem 0 2rem;
+      font-size: clamp(3.8rem, 2.6rem + 4.2vw, 7rem);
+      line-height: 1.05;
+      letter-spacing: -.03em;
+      font-weight: 800;
+      color: var(--ink);
+    }
+    h1 em { font-style: normal; color: var(--green); }
+    .lead { max-width: 52rem; margin: 0 0 3.2rem; font-size: 2rem; }
 
-  <!-- 
-    - preload images
-  -->
-  <link rel="preload" as="image" href="./assets/images/hero-illustration.svg">
-  <!-- <link rel="preload" as="image" href="./assets/images/Blog.svg"> -->
+    .actions { display: flex; flex-wrap: wrap; gap: 1.4rem; margin: 0; padding: 0; list-style: none; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 4.8rem; padding: 1.1rem 2.8rem;
+      font: 700 1.7rem/1 var(--ff);
+      text-decoration: none;
+      border: 2px solid var(--green);
+      border-radius: 999px;
+      transition: transform .2s ease, background-color .2s ease, color .2s ease;
+    }
+    .btn-primary { background: var(--green); color: var(--white); }
+    .btn-primary:hover { background: var(--green-deep); border-color: var(--green-deep); transform: translateY(-3px); }
+    .btn-ghost { background: var(--white); color: var(--ink); border-color: var(--ink); }
+    .btn-ghost:hover { background: var(--ink); color: var(--white); transform: translateY(-3px); }
 
-  <!-- 
-    - floating shapes 
-  -->
-  <button id="back-to-top-btn"> ↑ </button>
+    .status {
+      display: flex; flex-wrap: wrap; gap: 1rem 2.4rem;
+      margin: 3.6rem 0 0; padding: 2rem 0 0; list-style: none;
+      border-top: 2px solid var(--line);
+      font-size: 1.6rem; font-weight: 700; color: var(--ink);
+    }
+    .status li { display: flex; align-items: center; gap: .8rem; }
+    .status svg { flex: none; }
+    .status .done { color: var(--green); }
 
+    .art { margin: 0; }
+    .art img { display: block; width: 100%; max-width: 56rem; height: auto; margin-inline: auto; animation: float 7s ease-in-out infinite; }
+    @keyframes float { 50% { transform: translateY(-1.2rem); } }
 
+    footer { padding-block: 0 3.2rem; font-size: 1.5rem; color: var(--slate); }
+    footer p { margin: 0; padding-top: 2rem; border-top: 2px solid var(--line); }
+
+    @media (min-width: 900px) {
+      main { grid-template-columns: 1.05fr 1fr; gap: 6rem; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .art img { animation: none; }
+      .btn { transition: none; }
+      .btn:hover { transform: none; }
+    }
+    @media (forced-colors: active) {
+      .btn, .badge { border: 2px solid ButtonText; }
+    }
+  </style>
 </head>
-
 <body>
+  <a class="skip" href="#content">Skip to main content</a>
 
-  <!-- 
-    - #HEADER
-  -->
-  
-  <header class="header" data-header>
-    <div class="container">
-
-     <a href="https://darinastoykova.github.io/" element class="logo"> Darry. </a> 
-        <!-- <img src="./assets/images/...svg" width="64" height="24" alt="Darry home"> -->
-      
-
-      <nav class="navbar" data-navbar>
-
-        <div class="navbar-top">
-          <a href="#" class="logo">
-            <!-- <img src="./assets/images/logo-light.svg" width="64" height="24" alt="Darry home"> -->
-          </a>
-
-          <button class="nav-close-btn" aria-label="close menu" data-nav-toggler>
-            <ion-icon name="close-outline" aria-hidden="true"></ion-icon>
-          </button>
-        </div>
-
-        <ul class="navbar-list">
-
-          
-
-          <li> 
-            <a href="#portfolio" class="navbar-link" >Projects</a>
-          </li>
-          <li>
-            <a href="#aboutme" class="navbar-link" >About</a>
-          </li>
-
-          <!-- <li>
-            <a href="#" class="navbar-link">Resume</a>
-          </li> -->
-
-		  <li>
-            <a href="#contact" class="navbar-link" >Contact</a>
-          </li>
-
-        </ul>
-
-        <div class="wrapper">
-          <a href="https://formsubmit.co/el/kopexa" class="social-link">Email</a>
-          <!-- <a href="https://www.behance.net/darinastoykova" class="social-link">BeHance</a> -->
-          <a href="https://drive.google.com/file/d/1IBI1pzovfIJgzTdyLalBbMPJ916jJwyF/view?usp=drive_link" target="_blank"  class="social-link">Resume</a>
-        </div>
-
-        <ul class="social-list">
-
-          <li>
-            <a href="https://www.behance.net/darinastoykova" class="social-link" target="_blank">
-              <ion-icon name="logo-behance"></ion-icon>
-            </a>
-          </li>
-
-          <li>
-            <a href="https://www.linkedin.com/in/darinastoykova/" class="social-link" target="_blank">
-              <ion-icon name="logo-linkedin"></ion-icon>
-            </a>
-          </li>
-
-          <!-- <li>
-            <a href="#" class="social-link">
-              <ion-icon name="logo-dribbble"></ion-icon>
-            </a>
-          </li> -->
-
-        </ul>
-        
-
-      </nav>
-
-      <button class="nav-open-btn" aria-label="open menu" data-nav-toggler>
-        <ion-icon name="menu-outline" aria-hidden="true"></ion-icon>
-      </button>
-
-      <div class="overlay" data-nav-toggler data-overlay></div>
-
-    </div>
+  <header>
+    <a class="brand" href="./" aria-label="Darina Stoykova, home">Darina<span>.</span></a>
   </header>
 
-
-
-
-
-  <main>
-    <article>
-
-      <!-- 
-        - #HERO
-      -->
-
-      <section class="section hero" aria-label="home">
-        <div class="container">
-
-          <figure class="hero-banner">
-            <img src="./assets/images/hero-illustration.svg" width="540" height="540" alt="Illustration of a web page layout being designed, with a pen-tool curve and a selected component" class="w-100"
-              data-reveal="top"> 
-
-            <!-- <img src=" " width="203" height="91" alt="Elipse" class="shape"
-              data-reveal="top" data-reveal-delay="0.25s">  -->
-          </figure>
-
-          <div class="hero-content">
-
-            <h1 class="h1 hero-title" data-reveal="top" data-reveal-delay="0.5s">
-              UX/UI Designer
-            </h1>
-
-            <p class="section-text" data-reveal="top" data-reveal-delay="0.75s">
-              Hello! I'm a multidisciplinary designer showcasing my work in design,
-              <br> user research, and branding.
-        
-              <!-- Hello! My mission is to design for great experiences. -->
-				<!-- Hello! I'm Darina, a freelance user experience and graphic designer currently based in Varna. Let's create
-			  together! -->
-            </p>
-            
-            <div class="btn-wrapper" data-reveal="top" data-reveal-delay="1s">
-              
-
-              <a href="#contact" class="btn btn-primary">Hire me</a>
-              <!-- <a href="https://drive.google.com/file/d/1IBI1pzovfIJgzTdyLalBbMPJ916jJwyF/view?usp=share_link" class="btn btn-primary">Resume</a>  -->
-              
-            </div>
-          
-
-          </div>
-
-        </div>
-      </section>
-
-      <!-- 
-        - #PROJECT
-      -->
-      
-      <section class="section project" aria-labelledby="project-label" id="portfolio">
-        
-        
-          <div class="shape"> </div>
-          
-        <div class="project-container"> </div>
-        <div class="container">
-          
-          
-         
-          
-
-            <div class="title-wrapper" data-reveal="top">
-           
-			       <h2 class="h2 section-title" id="project-label">Portfolio</h2>
-              
-
-              <!-- <p class="section-text">
-                Check out some of my latest projects with creative ideas. 
-              </p> -->
-			  
-            </div>
-             
-
-            <!-- <a href="#" class="btn btn-secondary">See All Projects</a>  -->
-
-          
-                                                                                             
-          <ul class="grid-list">
-            
-
-            <li>
-              <div class="project-card project-card-1" style="background-color: #fcf4f6">
-
-                <div class="card-content" data-reveal="left">
-
-                  <p class="card-tag" style="color: #ce3e6c">Web Design</p>
-
-                  <h3 class="h3 card-title">Landing Page</h3>
-
-                  <p class="card-text">
-                    <!-- Maecenas faucibus mollis interdum sed posuere consectetur est at lobortis. Scelerisque id ligula
-                    porta felis euismod semper. Fusce dapibus tellus cursus. -->
-                    This project features a modern and responsive design, along with a simple yet effective call-to-action to drive conversions. 
-                  </p>
-
-                  <a href="./LandingPage.html"  target="_self" class="btn-text" style="color: #ce3e6c">
-                    <span class="span">See Project</span>
-
-                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                  </a>
-
-                </div>
-
-                <figure class="card-banner" data-reveal="right">
-                  <a href="./LandingPage.html"><img src="./assets/images/Frame 1.png" width="650" height="370" loading="lazy" alt="Web Design"
-                    class="w-100"> </a>
-                </figure>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="project-card project-card-2" style="background-color: #f8f5fb">
-
-                <div class="card-content" data-reveal="right">
-
-                  <p class=" card-tag" style="color: #725570">App Design</p>
-
-                  <h3 class="h3 card-title">Fleamarket App</h3>
-
-                  <p class="card-text">
-                    A look at how optimising the interface of the platform, streamlining features and simplifying the experience makes it more intuitive.
-                  </p>
-
-                  <a href="./FleamarketApp.html"  target="_self" class="btn-text" style="color: #725570">
-                    <span class="span">See Project</span>
-
-                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                  </a>
-
-                </div>
-
-                <figure class="card-banner" data-reveal="left">
-                  <a href="./FleamarketApp.html" ><img src="./assets/images/project-2.png" width="625" height="367" loading="lazy" alt="App Design"
-                    class="w-100"> </a>
-                </figure>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="project-card project-card-3" style="background-color: #f1f5fd">
-
-                <div class="card-content" data-reveal="left">
-
-                  <p class=" card-tag" style="color: #3f78e0">User Research</p>
-
-                  <h3 class="h3 card-title">Utility Case Study</h3>
-
-                  <p class="card-text">
-                    <!-- Maecenas faucibus mollis interdum sed posuere porta consectetur cursus porta lobortis. Scelerisque
-                    id ligula felis. -->
-                    Group Chats feature on the Tumblr App - Is it being utilised? How often do users use additional 
-                    features in the app?
-                  </p>
-
-                  <a href="./UserResearch.html" target="_self" class="btn-text" style="color: #3f78e0">
-                    <span class="span">See Project</span>
-
-                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                  </a>
-
-                </div>
-
-                <figure class="card-banner" data-reveal="right">
-                  <a href="./UserResearch.html"> <img src="./assets/images/project-3.png" width="625" height="367" loading="lazy" alt="Case Study" 
-                    class="w-110"> </a>
-                </figure>
-
-              </div>
-            </li>
-
-            <li>
-              <div class="project-card project-card-4" style="background-color: #f5faf7">
-
-                <div class="card-content" data-reveal="left">
-
-                  <p class=" card-tag" style="color: #225b4a">Logo Design</p>
-
-                  <h3 class="h3 card-title">Brand Identity</h3>
-
-                  <p class="card-text">
-                    This branding project aims to create a distinct visual identity 
-                    that reflects the unique values and understanding of Den.
-                  </p>
-
-                  <a href="./LogoDesign.html" target="_self" class="btn-text" style="color: #225b4a">
-                    <span class="span">See Project</span>
-
-                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                  </a>
-
-                </div>
-
-                <figure class="card-banner" data-reveal="right">
-                  <a href="./LogoDesign.html"> <img src="./assets/images/project-4.png" width="620" height="370" loading="lazy" alt="Brand Identity"
-                    class="w-100"> </a>
-                </figure>
-
-              </div>
-            </div>
-            </li>
-
-          </ul>
-
-         
-          </div>
-        
-      
-
-        
-
-      
-      
-
-      </section>
- 
-    
-    <!-- 
-        - #ABOUT
-      -->
- 
-
-      <!-- Whether it's a branding project, a website, or product design, -->
-      
-	  <section class="section about" aria-label="about" id="aboutme">
-     
-      
-        <div class="container">
-
-          <div class="wrapper">
-
-            <div data-reveal="left">
-              <h2 class="h2 section-title">About Me</h2>
-              
-
-              <p class="section-text" >
-                My name is Darina (Darry), I design intuitive and accessible digital products. 
-                My approach to each challenge is with resolve and an open mind. With a background in graphic design, I like to make people feel neat about concepts and ideas.
-              </p>
-
-              
-            </div>
-            <div data-reveal="right">
-              
-            <p class="section-text right" >
-              <br> I build responsive cross-platform design systems for B2B and B2C operating models. As a professional, my work is primarily that of aligning user-centered design methodologies with business needs.
-            </p>
-            </div>
-
-          
-
-          </div>
-          <br>
-          <br>
-          <br>
-          
-          <div class="wrapper" data-reveal="bottom" data-reveal-delay="0.25s">
-          
-            <h3 class="h3 section-title">Skills & Services</h3>
-            <section text-align="right">
-            <div class="btn-wrapper" data-reveal="bottom" data-reveal-delay="0.25s">
-              
-              
-              <!-- <a href="https://drive.google.com/file/d/1IBI1pzovfIJgzTdyLalBbMPJ916jJwyF/view?usp=share_link" class="btn btn-secondary" target="_blank">Download Resume ↓</a> -->
-              
-            </div>
-             </section>
-          </div>
-          
-          <ul class="grid-list">
-
-            <li data-reveal="bottom">
-              <div class="about-card">
-
-                <div class="card-icon">
-                  <img src="./assets/images/icon-1-theme.svg" width="52" height="52" loading="lazy" alt="web design icon">
-                </div>
-
-                <h3 class="h4 card-title">Digital Design</h3>
-
-                <p class="card-text">
-                  <!-- Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras
-                  justo cum sociis natoque magnis. -->
-                   Strong understanding of aesthetics and design principles, digital drawing as well as proficiency in software such as Adobe Creative Suite.
-
-
-                  <!-- Graphic Design <br> Mock-ups <br> Editing  -->
-                </p> 
-
-              </div>
-            </li>
-
-            <li data-reveal="bottom" data-reveal-delay="0.25s">
-              <div class="about-card">
-
-                <div class="card-icon">
-                  <img src="./assets/images/icon-2-theme.svg" width="52" height="52" loading="lazy" alt="mobile design icon">
-                </div>
-
-                <h3 class="h4 card-title">Prototype</h3>
-
-                <p class="card-text">
-                  <!-- Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras
-                  justo cum sociis natoque magnis. -->
-                  Proficiency in prototyping tools and technologies such as Adobe XD, Sketch, Figma. Live prototypes are available on request.
-                  
-                </p>
-
-              </div>
-            </li>
-
-            <li data-reveal="bottom" data-reveal-delay="0.5s">
-              <div class="about-card">
-
-                <div class="card-icon">
-                  <img src="./assets/images/icon-3.svg" width="52" height="52" loading="lazy"
-                    alt="web development icon">
-                </div>
-
-                <h3 class="h4 card-title">Web Development</h3>
-
-                <p class="card-text">
-                  <!-- Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras
-                  justo cum sociis natoque magnis. -->
-                  Competency in using software development tools such as Git and VSC, front-end coding in HTML, CSS and JS, evident within this website.
-                </p> 
-
-              </div>
-            </li>
-
-            <li data-reveal="bottom" data-reveal-delay="0.75s">
-              <div class="about-card">
-
-                <div class="card-icon">
-                  <img src="./assets/images/icon-4-theme.svg" width="52" height="52" loading="lazy" alt="web seo icon">
-                </div>
-
-                <h3 class="h4 card-title">User Research</h3>
-
-                <p class="card-text">
-                  <!-- Nulla vitae elit libero, a pharetra augue. Donec id elit non mi porta gravida at eget metus. Cras
-                  justo cum sociis natoque magnis. -->
-                  Strong understanding of research methodologies and usability testing. Interpersonal skills with users, stakeholders, and team members. 
-                </p> 
-
-              </div>
-            </li>
-          
-          </ul>
-
-          
-        </section>
-        </div>
-        <div class="shape"> </div>
-
-
-      <!-- 
-        - #CONTACT
-      -->
-        
-      <!-- <div class="shape"> </div>
-          <div class="project-container"> </div> -->
-      <section class="section contact" aria-label="contact" id="contact">
-        
-        
-        
-        
-        <div class="container">
-          <div class="grid-list" data-reveal="left">
-            
-            <h2 class="h2 section-title">Contact</h2> 
-            <br>
-            
-          </div>
-            
-            
-
-          <div class="contact-card">
-
-            <div class="contact-content" data-reveal="left">
-              
-
-              <div class="card-icon">
-                <img src="./assets/images/icon-5-theme.svg" width="44" height="44" loading="lazy" alt="envelop icon">
-              </div>
-
-              <h2 class="h2 section-title">Let's design together!</h2>
-
-              <p class="section-text">
-                I bring rapid solutions to make the life of my clients easier. Have any questions? Reach out to me from
-                this contact form and I will get back to you shortly.
-              </p>
-
-            </div>
-
-            <form action="https://formspree.io/f/xrgvozpp" target="_self"  class="contact-form" data-reveal="right" method="post">
-
-              <div class="input-wrapper">
-                <input type="text" name="name" placeholder="Name *" required class="input-field">
-                <input type="hidden" name="_next" value="Thank you!" >
-
-                <input type="email" name="email_address" placeholder="Email *" required class="input-field">
-              </div>
-
-              <textarea name="message" placeholder="Message *" required class="input-field"></textarea>
-
-              <button type="submit" class="btn btn-secondary" target="_next" >Send message</button>
-
-            </form>
-
-          </div>
-
-        </div>
-      </section>
-
-    </article>
- 
-  </main>
-
-
-
-
-
-  <!-- 
-    - #FOOTER
-  -->
-
-  <footer class="footer">
-    <div class="container">
-
-      <p class="copyright">
-        © 2026 Darina Stoykova. All rights reserved.
+  <main id="content">
+    <section aria-labelledby="title">
+      <p class="badge"><i aria-hidden="true"></i>Under construction</p>
+      <h1 id="title">Something good is <em>taking shape.</em></h1>
+      <p class="lead">
+        I'm Darina, a UI/UX designer. My portfolio is getting a fresh rebuild with
+        pixel-perfect, responsive and accessible case studies. Thanks for stopping by,
+        and please check back soon.
       </p>
-   
-      <ul class="social-list">
 
-        <li>
-          <a href="https://www.behance.net/darinastoykova" class="social-link" target="_blank">
-            <ion-icon name="logo-behance"></ion-icon>
-          </a>
-        </li>
-
-        <li>
-          <a href="https://www.linkedin.com/in/darinastoykova/" class="social-link" target="_blank">
-            <ion-icon name="logo-linkedin"></ion-icon>
-          </a>
-        </li>
-
-        <!-- <li>
-          <a href="#" class="social-link">
-            <ion-icon name="logo-dribbble"></ion-icon>
-          </a>
-        </li> -->
-
+      <ul class="actions">
+        <li><a class="btn btn-primary" href="mailto:dar.stoykova@gmail.com">Say hello by email</a></li>
+        <li><a class="btn btn-ghost" href="https://www.behance.net/darinastoykova" rel="noopener">Behance<span class="sr-only"> (opens my Behance profile)</span></a></li>
+        <li><a class="btn btn-ghost" href="https://www.linkedin.com/in/darinastoykova" rel="noopener">LinkedIn<span class="sr-only"> (opens my LinkedIn profile)</span></a></li>
       </ul>
 
-    </div>
+      <ul class="status" aria-label="Rebuild progress">
+        <li class="done">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><path d="M4 10.5l4 4 8-9" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Design done
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="none" stroke="#1F7A4C" stroke-width="2.6"/><circle cx="10" cy="10" r="2.6" fill="#1F7A4C"/></svg>
+          Building now
+        </li>
+        <li>
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="none" stroke="#4E5D55" stroke-width="2.6" stroke-dasharray="3 3.4"/></svg>
+          Launching soon
+        </li>
+      </ul>
+    </section>
+
+    <figure class="art">
+      <img src="./illustration.svg" width="540" height="540" alt="A web page layout taking shape, with a pen-tool curve and a selected component.">
+    </figure>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Darina Stoykova. All rights reserved.</p>
   </footer>
-
-
-
- <!-- 
-    - ionicon link
-  -->
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-
-  <!-- 
-    - custom js link
-  -->
-  <script src="./assets/js/script.js"></script>
-  <script src="./assets/js/shape.js"></script>
-
-
-    
-  
 </body>
-
 </html>
